@@ -25,8 +25,8 @@ class StoreReservationRequest extends FormRequest
             'room_id' => ['required', 'numeric'],
             'code' => ['required', 'numeric', 'max:999'], 
             'guestNumber' => ['required', 'numeric'], 
-            'start_date' => ['required', 'date_format:Y-m-d'],
-            'end_date' => ['required', 'date_format:Y-m-d'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
         ];
     }
 }
