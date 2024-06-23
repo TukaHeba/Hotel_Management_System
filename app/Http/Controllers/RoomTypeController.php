@@ -12,7 +12,7 @@ class RoomTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
         $roomsType = RoomType::all();
         return view('Admin.pages.dashboard.room_types.index', compact('roomsType'));

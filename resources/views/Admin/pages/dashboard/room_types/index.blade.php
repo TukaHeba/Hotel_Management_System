@@ -34,7 +34,7 @@
                         <td>
                             @foreach($roomType->services as $service)
                             {{ $loop->iteration }}. {{ $service->name }}<br>
-                        @endforeach
+                        @endforeach 
                         </td>
                       
                         <td><a href='{{route("roomType.edit", $roomType->id)}}' class="btn btn-outline-success">EDIT</a></td>
