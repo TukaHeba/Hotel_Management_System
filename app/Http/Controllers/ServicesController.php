@@ -39,19 +39,24 @@ class ServicesController extends Controller
      */
     public function store(StoreServicesRequest $request)
     {
-        $request->validated();
-        $path = $this->storeImage($request->file('img'), 'services');
+        try {
+            $request->validated();
+            $path = $this->storeImage($request->file('img'), 'services');
 
-        if ($path) {
-            Service::create([
-                'name' => $request->name,
-                'price' => $request->price,
-                'description' => $request->description,
-                'img' => $path,
-            ]);
-            return redirect()->route('services.index')->with('success', 'Service created successfully!');
+            if ($path) {
+                Service::create([
+                    'name' => $request->name,
+                    'price' => $request->price,
+                    'description' => $request->description,
+                    'img' => $path,
+                ]);
+                return redirect()->route('services.index')->with('success', 'Service created successfully!');
+            }
+            return redirect()->back()->with('error', 'Failed!. Image was not stored');
+        } catch (\Exception $e) {
+            Log::error('Error in ServicesController@store: ' . $e->getMessage());
+            return redirect()->route('services.index')->with('error', 'An error occurred: ' . $e->getMessage());
         }
-        return redirect()->back()->with('error', 'Failed!. Image was not stored');
     }
 
     /**
