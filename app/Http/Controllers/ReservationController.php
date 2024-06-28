@@ -12,7 +12,6 @@ use App\Models\ReservationStatusEvent;
 use App\Http\Traits\BladeReservationTrait;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
-use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
@@ -62,19 +61,17 @@ class ReservationController extends Controller
             return $response;
         }
         return redirect()->route('reservation.index')->with('success', 'Reservation created successfully.');
+        // $roomId = $request->input('room_id');
+        // $reservationStartDate = Carbon::parse($request->input('start_date'));
+        // $room = Room::findOrFail($roomId);
 
-        $roomId = $request->input('room_id');
-        $reservationStartDate = Carbon::parse($request->input('start_date'));
-        $room = Room::findOrFail($roomId);
+        // // trigger  the event to check room availability before make the reservation.
 
-        // trigger  the event to check room availability before make the reservation.
-
-        event(new ReservationAttempting($room, $reservationStartDate));
-        return view('reservation.index');
+        // event(new ReservationAttempting($room, $reservationStartDate));
+        // return view('reservation.index');
     }
-    
-    
-     /**
+
+    /**
      * Display the specified resource.
      */
 
@@ -102,7 +99,6 @@ class ReservationController extends Controller
             foreach ($reservationEvents as $reservationEvent) {
                 $reservationCurrentStatus = optional($reservationEvent->reservationStatusCatalogs)->name;
                 $reservationCurrentEventDate = $reservationEvent->created_at->format('d-m-Y H:i:s');
-
                 $reservationStatusOverTime[] = [
                     'currentStatus' => $reservationCurrentStatus ?? 'UnKnown',
                     'currentEventDate' => $reservationCurrentEventDate,
@@ -129,7 +125,7 @@ class ReservationController extends Controller
     {
          $users = User::all();
          $rooms = Room::all();
-         return view('Admin.reservations.edit', compact('reservation', 'users', 'rooms'));
+         return view('admin.pages.dashboard.reservation.edit', compact('reservation', 'users', 'rooms'));
     }
 
     /**
@@ -149,15 +145,5 @@ class ReservationController extends Controller
     {
         $reservation->delete();
         return redirect()->route('reservation.index')->with('success', 'Reservation deleted successfully.');
-    }
-
-    public function search(Request $request)
-    {
-        $search = $request->input('q');
-        $reservations = Reservation::where('start_date', 'like', "%{$search}%")
-                                    ->orWhere('code', 'like', "%{$search}%")
-                                    ->get(['id', 'code', 'start_date']);
-
-        return response()->json($reservations);
     }
 }
