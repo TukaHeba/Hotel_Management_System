@@ -137,6 +137,23 @@ This project is used by the following companies:
 - Focal-X- 
 
 
+# DEMO
+
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel1.PNG)
+
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel2.PNG)
+
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel3.PNG)
+
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel4.PNG)
+
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel5.PNG)
+
+### Dokcer img
+![screenshot](https://github.com/TukaHeba/Hotel_Management_System/blob/main/Demo/hotel6.PNG)
+
+
+
 
 ## Optimizations
 
