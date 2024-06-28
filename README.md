@@ -29,11 +29,11 @@ Again make sure that you have setup the environment properly. You will need mini
 ### clone the repo
 
 ```bash
-git clone https://github.com/TukaHeba/Hotel_Management_System.git
+git clone https://github.com/ali-workshop/Diploma_Project_Backup.git
 
 ```
 ```bash
- cd Hotel_Management_System
+ cd Diploma_Project_Backup
 ```
 
 
